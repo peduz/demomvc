@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+   
+      <a 
+         th:fragment="button(link, title)" 
+         th:href="@{link}" 
+         th:text="${title}" 
+         class="btn btn-primary"
+         >
+    </a>
+    
+	<a 
+         th:fragment="pippo(link, title)" 
+         th:href="@{link}" 
+         th:text="${title}" 
+         class="btn btn-primary"
+         >
+    </a>
+    
+  </body>
+</html>

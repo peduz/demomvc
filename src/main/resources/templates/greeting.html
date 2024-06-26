@@ -1,12 +1,60 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Greeting</title> 
-  </head>
-  <body>
-    <div>
-      <h1 th:text="'Ciao ' + ${name} + '!'"/>
-      <h2 th:text="'Sono le ore ' + ${time}"/>
-    </div> 
-  </body>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<title>Greeting</title>
+
+<link rel="stylesheet" th:href="@{/css/application.css}">
+
+</head>
+<body>
+	<div th:text="#{dashboard.title}"></div>
+	<div>
+		<h1 th:text="'Ciao ' + ${name} + '!'" />
+		<h2 th:text="'Sono le ore ' + ${time}" />
+	</div>
+	<img alt="logo" th:src="@{/img/logo.jpg}" />
+	<div th:with="name=${user.name},surname=${user.surname}">
+		<p>
+			Ciao! Mi chiamo <span th:text="${name}"></span><span
+				th:text="${surname}"></span>.
+		</p>
+	</div>
+
+	<div th:text="${username}"></div>
+	<div th:text="${user.getName()}"></div>
+	<div th:text="${user.name}"></div>
+	<div th:text="${user.surname}"></div>
+	<div
+		th:text="'è il cognome preso dalla lista' + ${userList[0].surname}">
+	</div>
+
+
+	<div th:object="${user}">
+		<p>
+			Name: <span th:text="*{name}"></span>
+		</p>
+		<p>
+			Surname: <span th:text="*{surname}"></span>
+		</p>
+	</div>
+
+	<a target="_blank" th:href="@{https://www.thymeleaf.org/}">Thymeleaf
+		documentation</a>
+	<a target="_blank"
+		th:href="@{/greetings?name={name}(name=${user.name})}">Relative
+		path</a>
+
+
+
+	<div th:if="${userList.size() != 0}">The list is not empty</div>
+
+	<div th:unless="${userList.size() > 0}">The list is empty</div>
+
+
+
+	<ul>
+		<li th:each="user : ${userList}" th:text="${user.name}"
+			th:style="'color:' + ${user.color}"></li>
+	</ul>
+</body>
 </html>
